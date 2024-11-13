@@ -31,7 +31,8 @@ class YOLOv5(BaseBackbone):
             **kwargs):
 
         super().__init__(**kwargs)
-        self.model = YOLO(weight)
+        self.model = torch.hub.load(
+            'ultralytics/yolov5u', 'custom', path=weight, force_reload=True)
 
         self.class_names = self.model.names
 
